@@ -1,30 +1,17 @@
 package com.carbonit.restapikata;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class RestApiKataApplication {
 
+    private static final Logger log = LoggerFactory.getLogger(RestApiKataApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(RestApiKataApplication.class, args);
+        log.warn("Logger check...");
     }
-/*
-    @Bean
-    CommandLineRunner test(StudentRepository repository) {
-        return (String... args) -> {
-            Student student1 = new Student("Jacques", 101.15f);
-            Student student2 = new Student("Julie", 102.02f);
-
-            // Act
-            repository.save(student1);
-            repository.save(student2);
-            var students = StreamSupport.stream(repository.findAll().spliterator(), false)
-                    //.map(Student::getId)
-                    .collect(Collectors.toList());
-            //students.forEach(s -> System.out.format("student : %s, %s, %tc, %tc", s.getId(), s.getName(), s.getCreationDate(), s.getUpdateDate() ));
-        };
-    }
- */
-
 }
