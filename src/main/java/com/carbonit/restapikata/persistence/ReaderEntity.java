@@ -1,4 +1,4 @@
-package com.carbonit.restapikata;
+package com.carbonit.restapikata.persistence;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "reader")
 @Getter @Setter @NoArgsConstructor
-public class Reader implements Serializable {
+public class ReaderEntity implements Serializable {
 
     @Id
     @GeneratedValue(
@@ -30,7 +30,7 @@ public class Reader implements Serializable {
             strategy = "uuid2",
             parameters = @Parameter(
                     name = "uuid_gen_strategy_class",
-                    value = "com.carbonit.restapikata.PostgreSQLUUIDGenerationStrategy"
+                    value = "com.carbonit.restapikata.persistence.PostgreSQLUUIDGenerationStrategy"
             )
     )
     private UUID id;
@@ -47,23 +47,26 @@ public class Reader implements Serializable {
     @Column(name = "education_level")
     private String educationLevel;
 
-    @ManyToMany(mappedBy = "readers", cascade = {CascadeType.MERGE})
-    private Set<Book> books = new HashSet<>();
+    @ManyToMany(mappedBy = "readers"/*, cascade = {CascadeType.MERGE}*/)
+    private Set<BookEntity> books = new HashSet<>();
 
+    //@CreatedDate : Auditing does not work : empty field
     @CreationTimestamp
     private Date creationDate;
 
+    //@LastModifiedDate : Auditing does not work : empty field
     @UpdateTimestamp
     private Date updateDate;
 
-    public Reader(String firstName, String lastName, Integer age, String educationLevel) {
+    public ReaderEntity(String firstName, String lastName, Integer age, String educationLevel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.educationLevel = educationLevel;
     }
 
-    public void addLecture(Book book) {
+    /*
+    public void addLecture(BookEntity book) {
         if(books == null)
             books = new HashSet<>();
 
@@ -73,10 +76,11 @@ public class Reader implements Serializable {
         }
     }
 
-    public void removeLecture(Book book) {
+    public void removeLecture(BookEntity book) {
         if(books.contains(book)) {
             books.remove(book);
             book.removeReader(this);
         }
     }
+     */
 }

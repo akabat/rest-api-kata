@@ -1,5 +1,7 @@
 package com.carbonit.restapikata;
 
+import com.carbonit.restapikata.persistence.ReaderEntity;
+import com.carbonit.restapikata.persistence.ReaderRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-class ReaderRepositoryTest {
+class ReaderEntityRepositoryTest {
 
     @Autowired
     private ReaderRepository readerRepository;
@@ -20,7 +22,7 @@ class ReaderRepositoryTest {
     @Test
     void whenCalledSave_thenStudentGetsPersisted() {
         // Arrange
-        var student = new Reader("Milena", "Knight", 44, "PhD");
+        var student = new ReaderEntity("Milena", "Knight", 44, "PhD");
 
         // Act
         student = readerRepository.save(student);
@@ -33,14 +35,14 @@ class ReaderRepositoryTest {
     @Test
     void whenSavingMoreStudents_thenAllGetPersisted() {
         // Arrange
-        Reader reader1 = new Reader("Jacques", "Chirac", 92, "Higher");
-        Reader reader2 = new Reader("Bill", "Bull", 18, "Undergraduate");
+        ReaderEntity reader1 = new ReaderEntity("Jacques", "Chirac", 92, "Higher");
+        ReaderEntity reader2 = new ReaderEntity("Bill", "Bull", 18, "Undergraduate");
 
         // Act
         readerRepository.save(reader1);
         readerRepository.save(reader2);
         var students = StreamSupport.stream(readerRepository.findAll().spliterator(), false)
-                .map(Reader::getId)
+                .map(ReaderEntity::getId)
                 .collect(Collectors.toList());
 
         //Assert
