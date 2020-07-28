@@ -1,4 +1,4 @@
-package com.carbonit.restapikata.persistence;
+package com.carbonit.restapikata;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "book")
 @Getter @Setter @NoArgsConstructor
-public class BookEntity implements Serializable {
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(
@@ -29,7 +29,7 @@ public class BookEntity implements Serializable {
             strategy = "uuid2",
             parameters = @org.hibernate.annotations.Parameter(
                     name = "uuid_gen_strategy_class",
-                    value = "com.carbonit.restapikata.persistence.PostgreSQLUUIDGenerationStrategy"
+                    value = "com.carbonit.restapikata.PostgreSQLUUIDGenerationStrategy"
             )
     )
     private UUID id;
@@ -43,12 +43,12 @@ public class BookEntity implements Serializable {
     @Column(name = "isbn")
     private String isbn;
 
-    @ManyToMany//(cascade = {CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "lecture",
             joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "reader_id", referencedColumnName = "id"))
-    private Set<ReaderEntity> readers = new HashSet<>();
+    private Set<Reader> readers = new HashSet<>();
 
     @CreationTimestamp
     private Date creationDate;
@@ -56,14 +56,13 @@ public class BookEntity implements Serializable {
     @UpdateTimestamp
     private Date updateDate;
 
-    public BookEntity(String title, String author, String isbn) {
+    public Book(String title, String author, String isbn) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
     }
 
-    /*
-    public void addReader(ReaderEntity reader) {
+    public void addReader(Reader reader) {
         if(readers == null)
             readers = new HashSet<>();
 
@@ -73,11 +72,10 @@ public class BookEntity implements Serializable {
         }
     }
 
-    public void removeReader(ReaderEntity reader) {
+    public void removeReader(Reader reader) {
         if(readers.contains(reader)) {
             readers.remove(reader);
             reader.removeLecture(this);
         }
     }
-     */
 }

@@ -1,4 +1,4 @@
-package com.carbonit.restapikata.persistence;
+package com.carbonit.restapikata;
 
 import org.hibernate.Session;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
