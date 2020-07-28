@@ -1,4 +1,4 @@
-package com.carbonit.restapikata;
+package com.carbonit.restapikata.persistence;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +29,7 @@ public class Book implements Serializable {
             strategy = "uuid2",
             parameters = @org.hibernate.annotations.Parameter(
                     name = "uuid_gen_strategy_class",
-                    value = "com.carbonit.restapikata.PostgreSQLUUIDGenerationStrategy"
+                    value = "com.carbonit.restapikata.persistence.PostgreSQLUUIDGenerationStrategy"
             )
     )
     private UUID id;
@@ -62,20 +62,8 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
-    public void addReader(Reader reader) {
-        if(readers == null)
-            readers = new HashSet<>();
-
-        if(!readers.contains(reader)) {
-            readers.add(reader);
-            reader.addLecture(this);
-        }
-    }
-
-    public void removeReader(Reader reader) {
-        if(readers.contains(reader)) {
-            readers.remove(reader);
-            reader.removeLecture(this);
-        }
+    public Book(UUID id, String title, String author, String isbn) {
+        this(title, author, isbn);
+        this.id = id;
     }
 }

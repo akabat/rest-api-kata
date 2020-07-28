@@ -1,4 +1,4 @@
-package com.carbonit.restapikata;
+package com.carbonit.restapikata.persistence;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +30,7 @@ public class Reader implements Serializable {
             strategy = "uuid2",
             parameters = @Parameter(
                     name = "uuid_gen_strategy_class",
-                    value = "com.carbonit.restapikata.PostgreSQLUUIDGenerationStrategy"
+                    value = "com.carbonit.restapikata.persistence.PostgreSQLUUIDGenerationStrategy"
             )
     )
     private UUID id;

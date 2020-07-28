@@ -1,4 +1,4 @@
-package com.carbonit.restapikata;
+package com.carbonit.restapikata.persistence;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface BookRepository extends PagingAndSortingRepository<Book, UUID> {
+public interface ReaderRepository extends PagingAndSortingRepository<Reader, UUID> {
+
 }

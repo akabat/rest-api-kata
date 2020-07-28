@@ -1,5 +1,7 @@
 package com.carbonit.restapikata;
 
+import com.carbonit.restapikata.persistence.Reader;
+import com.carbonit.restapikata.persistence.ReaderRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

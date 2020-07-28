@@ -1,5 +1,9 @@
 package com.carbonit.restapikata;
 
+import com.carbonit.restapikata.persistence.Book;
+import com.carbonit.restapikata.persistence.BookRepository;
+import com.carbonit.restapikata.persistence.Reader;
+import com.carbonit.restapikata.persistence.ReaderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -7,7 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import javax.transaction.Transactional;
 import java.util.stream.StreamSupport;
 
 @SpringBootApplication
