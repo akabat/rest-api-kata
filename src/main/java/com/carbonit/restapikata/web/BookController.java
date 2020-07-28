@@ -37,15 +37,15 @@ public class BookController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDTO createBook(@RequestBody BookDTO newBook, @PathVariable("id") UUID id) {
+    public BookDTO updateBook(@RequestBody BookDTO newBook, @PathVariable("id") UUID id) {
         if (!id.equals(newBook.getId())) {
-            throw new IllegalArgumentException("id from path and bookdto differs");
+            throw new IllegalArgumentException("id from path and bookdto differ");
         }
         return bookService.update(id, newBook);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") UUID id) {
         bookService.delete(id);
     }
