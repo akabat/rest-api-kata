@@ -8,4 +8,7 @@ import java.util.UUID;
 @Repository
 public interface ReaderRepository extends PagingAndSortingRepository<ReaderEntity, UUID> {
 
+    Iterable<ReaderEntity> findAllByFirstName(String firstName);
+    Iterable<ReaderEntity> findAllByLastName(String lastName);
+
 }

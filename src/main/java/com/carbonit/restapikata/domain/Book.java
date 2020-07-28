@@ -9,30 +9,33 @@ public class Book {
     private final String author;
     private final String isbn;
     private final Set<Reader> readers = new HashSet<>();
-    private final Date creationDate;
-    private final Date updateDate;
 
-    public void addReader(Reader reader) {
+    void addReader(Reader reader) {
         if(!readers.contains(reader)) {
             readers.add(reader);
             reader.addLecture(this);
         }
     }
 
-    public void removeReader(Reader reader) {
+    void removeReader(Reader reader) {
         if(readers.contains(reader)) {
             readers.remove(reader);
             reader.removeLecture(this);
         }
     }
 
-    public Book(UUID id, String title, String author, String isbn, Date creationDate, Date updateDate) {
+    public Book(String title, String author, String isbn) {
+        this.id = null;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
+
+    public Book(UUID id, String title, String author, String isbn) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
-        this.creationDate = creationDate;
-        this.updateDate = updateDate;
     }
 
     public UUID getId() {
@@ -55,14 +58,6 @@ public class Book {
         return Collections.unmodifiableCollection(readers);
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,14 +67,12 @@ public class Book {
                 Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
                 Objects.equals(isbn, book.isbn) &&
-                Objects.equals(readers, book.readers) &&
-                Objects.equals(creationDate, book.creationDate) &&
-                Objects.equals(updateDate, book.updateDate);
+                Objects.equals(readers, book.readers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, isbn, readers, creationDate, updateDate);
+        return Objects.hash(id, title, author, isbn, readers);
     }
 
     @Override
@@ -90,8 +83,6 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", readers=" + readers +
-                ", creationDate=" + creationDate +
-                ", updateDate=" + updateDate +
                 '}';
     }
 }

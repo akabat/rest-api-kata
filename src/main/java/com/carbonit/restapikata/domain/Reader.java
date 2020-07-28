@@ -11,31 +11,36 @@ public class Reader implements Serializable {
     private final Integer age;
     private final String educationLevel;
     private final Set<Book> books = new HashSet<>();
-    private final Date creationDate;
-    private final Date updateDate;
 
-    public void addLecture(Book book) {
+    void addLecture(Book book) {
         if (!books.contains(book)) {
             books.add(book);
             book.addReader(this);
         }
     }
 
-    public void removeLecture(Book book) {
+    void removeLecture(Book book) {
         if (books.contains(book)) {
             books.remove(book);
             book.removeReader(this);
         }
     }
 
-    public Reader(UUID id, String firstName, String lastName, Integer age, String educationLevel, Date creationDate, Date updateDate) {
+    public Reader(String firstName, String lastName, Integer age, String educationLevel) {
+        this.id = null;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.educationLevel = educationLevel;
+    }
+
+    public Reader(UUID id, String firstName, String lastName, Integer age,
+                  String educationLevel) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.educationLevel = educationLevel;
-        this.creationDate = creationDate;
-        this.updateDate = updateDate;
     }
 
     public UUID getId() {
@@ -62,14 +67,6 @@ public class Reader implements Serializable {
         return books;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,14 +77,12 @@ public class Reader implements Serializable {
                 Objects.equals(lastName, reader.lastName) &&
                 Objects.equals(age, reader.age) &&
                 Objects.equals(educationLevel, reader.educationLevel) &&
-                Objects.equals(books, reader.books) &&
-                Objects.equals(creationDate, reader.creationDate) &&
-                Objects.equals(updateDate, reader.updateDate);
+                Objects.equals(books, reader.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, age, educationLevel, books, creationDate, updateDate);
+        return Objects.hash(id, firstName, lastName, age, educationLevel, books);
     }
 
     @Override
@@ -99,8 +94,6 @@ public class Reader implements Serializable {
                 ", age=" + age +
                 ", educationLevel='" + educationLevel + '\'' +
                 ", books=" + books +
-                ", creationDate=" + creationDate +
-                ", updateDate=" + updateDate +
                 '}';
     }
 }

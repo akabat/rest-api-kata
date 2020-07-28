@@ -1,13 +1,17 @@
 package com.carbonit.restapikata.persistence;
 
+import com.carbonit.restapikata.domain.IReaderRepository;
 import com.carbonit.restapikata.domain.Reader;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
-public class ReaderDao implements com.carbonit.restapikata.domain.ReaderRepository {
+public class ReaderDao implements IReaderRepository {
 
     private final ReaderRepository readerRepository;
 
@@ -28,23 +32,45 @@ public class ReaderDao implements com.carbonit.restapikata.domain.ReaderReposito
     }
 
     @Override
-    public Collection<Reader> findByFirstName(String firstName) {
+    public Collection<Reader> findAll() {
+        var entityReaders = readerRepository.findAll();
+        return StreamSupport.stream(entityReaders.spliterator(), false)
+                .map(ReaderMapper::entityToDomain)
+                .collect(Collectors.toSet());
+    }
 
-        return null;
+    @Override
+    @Transactional
+    public Collection<Reader> findAllWithBooks() {
+        var entityReaders = readerRepository.findAll();
+        return StreamSupport.stream(entityReaders.spliterator(), false)
+                .map(ReaderMapper::entityToDomain)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Collection<Reader> findByFirstName(String firstName) {
+        var entities = readerRepository.findAllByFirstName(firstName);
+        return StreamSupport.stream(entities.spliterator(), false)
+                .map(ReaderMapper::entityToDomain)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public Collection<Reader> findByLastName(String lastName) {
-        return null;
+        var entities = readerRepository.findAllByLastName(lastName);
+        return StreamSupport.stream(entities.spliterator(), false)
+                .map(ReaderMapper::entityToDomain)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public Reader update(Reader book) {
-        return null;
+        return create(book);
     }
 
     @Override
-    public Reader delete(Reader book) {
-        return null;
+    public void delete(Reader book) {
+        readerRepository.deleteById(book.getId());
     }
 }

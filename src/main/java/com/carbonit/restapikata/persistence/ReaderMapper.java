@@ -12,9 +12,11 @@ public class ReaderMapper {
         entityReader.setFirstName(domainReader.getFirstName());
         entityReader.setLastName(domainReader.getLastName());
         entityReader.setAge(domainReader.getAge());
+
         entityReader.getBooks().addAll(domainReader.getBooks().stream()
                 .map(BookMapper::domainToEntity)
                 .collect(Collectors.toSet()));
+
         return entityReader;
     }
 
@@ -24,9 +26,7 @@ public class ReaderMapper {
                 entityReader.getFirstName(),
                 entityReader.getLastName(),
                 entityReader.getAge(),
-                entityReader.getEducationLevel(),
-                entityReader.getCreationDate(),
-                entityReader.getUpdateDate());
+                entityReader.getEducationLevel());
     }
 
 }

@@ -3,7 +3,7 @@ package com.carbonit.restapikata.domain;
 import java.util.Collection;
 import java.util.UUID;
 
-public interface ReaderRepository {
+public interface IReaderRepository {
 
     // Create
     Reader create(Reader reader);
@@ -11,6 +11,8 @@ public interface ReaderRepository {
     // Read
     Reader findById(UUID readerId);
 
+    Collection<Reader> findAll();
+    Collection<Reader> findAllWithBooks();
     Collection<Reader> findByFirstName(String firstName);
     Collection<Reader> findByLastName(String lastName);
 
@@ -18,5 +20,5 @@ public interface ReaderRepository {
     Reader update(Reader book);
 
     // Delete
-    Reader delete(Reader book);
+    void delete(Reader book);
 }

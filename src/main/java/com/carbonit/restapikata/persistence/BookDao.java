@@ -1,13 +1,14 @@
 package com.carbonit.restapikata.persistence;
 
 import com.carbonit.restapikata.domain.Book;
+import com.carbonit.restapikata.domain.IBookRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.UUID;
 
 @Component
-public class BookDao implements com.carbonit.restapikata.domain.BookRepository {
+public class BookDao implements IBookRepository {
 
     private final BookRepository bookRepository;
 
@@ -17,11 +18,16 @@ public class BookDao implements com.carbonit.restapikata.domain.BookRepository {
 
     @Override
     public Book create(Book book) {
-        return null;
+        var bookEntity = bookRepository.save(BookMapper.domainToEntity(book));
+        return BookMapper.entityToDomain(bookEntity);
     }
+
+
+
 
     @Override
     public Book findById(UUID bookId) {
+
         return null;
     }
 
@@ -46,7 +52,7 @@ public class BookDao implements com.carbonit.restapikata.domain.BookRepository {
     }
 
     @Override
-    public Book delete(Book book) {
-        return null;
+    public void delete(Book book) {
+
     }
 }
