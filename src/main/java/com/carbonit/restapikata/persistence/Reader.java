@@ -63,20 +63,13 @@ public class Reader implements Serializable {
         this.educationLevel = educationLevel;
     }
 
-    public void addLecture(Book book) {
-        if(books == null)
-            books = new HashSet<>();
-
-        if(!books.contains(book)) {
-            books.add(book);
-            book.addReader(this);
-        }
+    public Reader(UUID id, String firstName, String lastName, Integer age, String educationLevel) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.educationLevel = educationLevel;
     }
 
-    public void removeLecture(Book book) {
-        if(books.contains(book)) {
-            books.remove(book);
-            book.removeReader(this);
-        }
-    }
+
 }

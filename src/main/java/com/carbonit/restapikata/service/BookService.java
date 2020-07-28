@@ -37,14 +37,14 @@ public class BookService {
     public BookDTO create(NewBookDTO newBook) {
         return BookMapper.entityToDto(
                 bookRepository.save(
-                        BookMapper.newBookDtoToEntity(newBook)));
+                        BookMapper.newDtoToEntity(newBook)));
     }
 
     @Transactional
     public BookDTO update(UUID id, BookDTO book) {
         return BookMapper.entityToDto(
             bookRepository.save(
-                    BookMapper.bookDtoToEntity(book)));
+                    BookMapper.dtoToEntity(book)));
     }
 
     public void delete(UUID id) {

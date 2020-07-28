@@ -13,7 +13,7 @@ public class BookMapper {
         );
     }
 
-    public static Book bookDtoToEntity(BookDTO bookDTO) {
+    public static Book dtoToEntity(BookDTO bookDTO) {
         return new Book(
                 bookDTO.getId(),
                 bookDTO.getTitle(),
@@ -21,7 +21,7 @@ public class BookMapper {
                 bookDTO.getIsbn());
     }
 
-    public static Book newBookDtoToEntity(NewBookDTO newBookDTO) {
+    public static Book newDtoToEntity(NewBookDTO newBookDTO) {
         return new Book(
                 newBookDTO.getTitle(),
                 newBookDTO.getAuthor(),
