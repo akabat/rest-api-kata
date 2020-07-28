@@ -20,28 +20,28 @@ public class ReaderController {
     }
 
     @GetMapping
-    public Collection<ReaderDTO> getAllBooks() {
+    public Collection<ReaderDTO> getAllReaders() {
         return readerService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ReaderDTO getBook(@PathVariable("id") UUID id) {
+    public ReaderDTO getReader(@PathVariable("id") UUID id) {
         return readerService.findOne(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ReaderDTO createBook(@RequestBody NewReaderDTO newBook) {
-        return readerService.create(newBook);
+    public ReaderDTO createReader(@RequestBody NewReaderDTO newReader) {
+        return readerService.create(newReader);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ReaderDTO createBook(@RequestBody ReaderDTO newBook, @PathVariable("id") UUID id) {
-        if (!id.equals(newBook.getId())) {
+    public ReaderDTO createReader(@RequestBody ReaderDTO newReader, @PathVariable("id") UUID id) {
+        if (!id.equals(newReader.getId())) {
             throw new IllegalArgumentException("id from path and bookdto differs");
         }
-        return readerService.update(id, newBook);
+        return readerService.update(id, newReader);
     }
 
     @DeleteMapping("/{id}")
