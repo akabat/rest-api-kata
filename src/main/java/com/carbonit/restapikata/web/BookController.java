@@ -15,7 +15,7 @@ import java.util.UUID;
 @RequestMapping("/books")
 public class BookController {
 
-    private static Logger log = LoggerFactory.getLogger(BookController.class);
+    private static final Logger log = LoggerFactory.getLogger(BookController.class);
 
     private final BookService bookService;
 
@@ -47,7 +47,7 @@ public class BookController {
         log.info("UPDATE book, id: " + id);
         if (!id.equals(newBook.getId())) {
             log.warn("UPDATE book exception, book id: " + newBook.getId() + ", param id: " + id.toString());
-            throw new IdMismatchException("id from path and bookdto differ");
+            throw new IdMismatchException("id from path and bookDto differ");
         }
         return bookService.update(id, newBook);
     }

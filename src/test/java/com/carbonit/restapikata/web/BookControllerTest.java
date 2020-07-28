@@ -45,8 +45,8 @@ class BookControllerTest {
     @Test
     void should_return_book_when_get_by_id() {
         // Arrange
-        var book = new BookDTO(UUID.randomUUID(),
-                "Siekierezada", "Edward Stachura", "342-fqdfq-234");
+        var book = new BookDTO(UUID.randomUUID(), "Siekierezada",
+                "Edward Stachura", "342-fqdfq-234");
         when(bookService.findOne(book.getId())).thenReturn(book);
 
         // Act & Assert
