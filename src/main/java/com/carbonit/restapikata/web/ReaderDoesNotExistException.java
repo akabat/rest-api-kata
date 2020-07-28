@@ -1,4 +1,4 @@
-package com.carbonit.restapikata.persistence;
+package com.carbonit.restapikata.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -3,7 +3,7 @@ package com.carbonit.restapikata.service;
 import com.carbonit.restapikata.model.NewReaderDTO;
 import com.carbonit.restapikata.model.ReaderDTO;
 import com.carbonit.restapikata.model.ReaderMapper;
-import com.carbonit.restapikata.persistence.ReaderDoesNotExistException;
+import com.carbonit.restapikata.web.ReaderDoesNotExistException;
 import com.carbonit.restapikata.persistence.ReaderRepository;
 import org.springframework.stereotype.Service;
 

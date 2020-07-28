@@ -3,7 +3,7 @@ package com.carbonit.restapikata.service;
 import com.carbonit.restapikata.model.BookDTO;
 import com.carbonit.restapikata.model.BookMapper;
 import com.carbonit.restapikata.model.NewBookDTO;
-import com.carbonit.restapikata.persistence.BookDoesNotExistException;
+import com.carbonit.restapikata.web.BookDoesNotExistException;
 import com.carbonit.restapikata.persistence.BookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
