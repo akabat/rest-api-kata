@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.carbonit'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '11'
 
 configurations {
@@ -39,6 +39,10 @@ dependencies {
     testImplementation 'io.rest-assured:json-path:4.2.0'
     testImplementation 'io.rest-assured:xml-path:4.2.0'
     testImplementation 'io.rest-assured:spring-mock-mvc:4.2.0'
+}
+
+bootJar {
+    archiveFileName = 'rest-api-kata.jar'
 }
 
 test {

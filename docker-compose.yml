@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build: '.'
+    links:
+      - 'database'
+      - 'elasticsearch:elastic'
+  database:
+    image: 'postgres'
+    environment:
+      POSTGRES_PASSWORD: database
+    ports:
+    - '8001:5432'
+  elasticsearch:
+    image: 'elasticsearch:7.8.1'
+    ports:
+      - '9200:9200'
+      - '9600:9300'
+    environment:
+      - 'discovery.type=single-node'
